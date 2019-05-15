@@ -1,0 +1,115 @@
+---
+title: "PrviDA"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+setwd('c:/Users/Zdravko/Desktop/Dense/DataRaw')
+list.files()
+
+```
+```{r}
+file1 <- read.csv('RelayStatsPerNbrPciCsv_01042019_0000_0100.csv')
+dim(file1)
+head(file1,5)
+length(file1)
+```
+```{r}
+names(file1)
+file1$Pci
+mean(file1$Pci)
+sd(file1$Pci)
+#subset(file1,file1$Pci < 400)
+#?subset()
+#file1$BSName
+#as.character(file1$Pci)
+##file1$Pci
+##as.character(file1$Pci)
+```
+```{r}
+file1$DateAndTimeStart
+
+#file1$Date <- as.Date( file1$DateAndTimeStart, "%Y-%m-%d")
+
+
+file1$Date
+file1$Pci
+#strptime(file1$Date)
+
+```
+```{r}
+plot(file1$DateAndTimeStart, file1$Pci, type = 'l')
+
+```
+```{r}
+fil <- file1
+#rm(file1)
+#ls()
+fil
+```
+
+```{r}
+apply(fil["RsrpMin"],2,sum)
+```
+```{r}
+sumThem <- function(tabela,ime) {
+  if(tabela < 0) warning("Premalo!\n")
+   return( suma = tabela + ime )
+   #return (apply(tabela["RsrpMin"],2,sum))
+}
+sumThem(-3,2)
+```
+```{r}
+library(plotly)
+wt <- mtcars$wt
+mpg <- mtcars$mpg
+plot_ly(mtcars, x = wt, y = mpg, mode = "markers", color = as.factor(mtcars$mpg), size = mtcars$hp)
+
+```
+```{r}
+plot_ly(mtcars, x = wt, y = mpg, mode = "markers")
+```
+```{r}
+set.seed(2016-07-21)
+temp <- rnorm(100, mean = 30, sd = 5 )
+pressue <- rnorm(100)
+dtime <- 1:100
+plot_ly(x=temp, y=pressue, z=dtime, type= "scatter3d", mode="markers", color=temp)
+`a<-2
+b<-3
+a+b``
+```{r}
+
+library(plotly)
+library(ggplot2)
+str(airmiles)
+data("airmiles")
+airm <- as.data.frame(airmiles)
+airm
+#plot_ly(time(airmiles), y = airmiles)``
+a<-2
+b<-3
+a+b
